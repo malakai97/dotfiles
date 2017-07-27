@@ -5,7 +5,7 @@
 	default = simple
 [core]
 	editor = vi
-[aliases]
+[alias]
   unstage = reset -q HEAD --
   discard = checkout --
   nevermind = !git reset --hard HEAD && git clean -d -f
