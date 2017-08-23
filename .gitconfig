@@ -1,10 +1,13 @@
 [user]
-	email = bhock@umich.edu
-	name = Bryan Hockey
+  email = bhock@umich.edu
+  name = Bryan Hockey
+
 [push]
-	default = simple
+  default = simple
+
 [core]
-	editor = vi
+  editor = vi
+
 [alias]
   unstage = reset -q HEAD --
   discard = checkout --
@@ -34,12 +37,17 @@
   amend = commit --amend
   back = checkout "-"
   contributors = shortlog -s -n
-  filetrail = log --follow -p -w
+  filetrail = git log --follow -p -w
   mergetrail = log --ancestry-path --merges
   s = status
+  co = checkout
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 [blame]
   date = relative
+
 [push]
   default = current
+
 [merge]
   conflictstyle = diff3
