@@ -11,6 +11,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'townk/vim-autoclose'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
 call vundle#end()
 filetype plugin indent on
 
@@ -25,7 +28,7 @@ set smartcase                   " unless we mix case
 set gdefault                    " global search by default
 set hls                         " highlight search as we type
 set incsearch                   " move cursor to next search match
-set showmatch                   " works with above two 
+set showmatch                   " works with above two
 
 " Disable F1------------------------------------------------------
 inoremap <F1> <ESC>
@@ -81,8 +84,10 @@ set smarttab                    " be smort
 set shiftwidth=2                " 2 spaces
 set tabstop=2                   " 2 spaces!
 
+" Whitespace  --------------------------------------------------
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
-" Buffers --------------------------------------------------
+" Buffers ------------------------------------------------------
 "set viminfo^=%                  " Keep list of last opened buffers
 "set hidden                      " Allow hiding buffers
 " Close current buffer without closing window
@@ -104,7 +109,7 @@ set tabstop=2                   " 2 spaces!
 " Finding Files: Ctrlp--------------------------------------------
 " find files by fuzzy path
 " search opened and other files
-"let g:ctrlp_cmd = 'CtrlPMixed'    
+"let g:ctrlp_cmd = 'CtrlPMixed'
 "let g:ctrlp_working_path_mode = 0 " disable working path because we use the project thing
 "let g:ctrlp_max_files=0           " no idea
 let g:ctrlp_custom_ignore = '__pycache__\|node_modules\|.bundle' " ignore these dirs
