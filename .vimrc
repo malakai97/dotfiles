@@ -17,6 +17,7 @@ Plugin 'tpope/vim-endwise'
 call vundle#end()
 filetype plugin indent on
 
+
 " Search --------------------------------------------------------
 " disable vim-specific search regex by inserting \v
 nnoremap / /\v
@@ -30,16 +31,19 @@ set hls                         " highlight search as we type
 set incsearch                   " move cursor to next search match
 set showmatch                   " works with above two
 
+
 " Disable F1------------------------------------------------------
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
+
 
 " Sounds ---------------------------------------------------------
 set noerrorbells                " shhh
 set novisualbell                " shhh
 set t_vb=                       " shh?
 set tm=500
+
 
 " Cripple our non-vim movement----------------------------------------
 nnoremap <up> <nop>
@@ -54,6 +58,18 @@ inoremap <right> <nop>
 " Navigation  ---------------------------------------------------------
 " nnoremap j gj                   " by screen line, not file line
 " nnoremap k gk                   " by screen line, not file line
+"
+
+" Smart indent when entering insert mode on empty lines --------------
+function! IndentWithI()
+  if len(getline('.')) == 0
+    return "\"_cc"
+  else
+    return "i"
+  endif
+endfunction
+nnoremap <expr> i IndentWithI()
+
 
 " Quality of Life ----------------------------------------------------
 set backspace=eol,start,indent  " Fix backspace
@@ -69,6 +85,8 @@ set ruler                       " more line info
 set history=700
 " set shell=bash
 set modelines=0                 " dodge some security issues
+set autowriteall                " save on buffer switch (instead of complaining)
+
 
 " Backup -------------------------------------------------------
 " Turn off backup, it just clutters git
@@ -83,15 +101,21 @@ set expandtab                   " use spaces
 set smarttab                    " be smort
 set shiftwidth=2                " 2 spaces
 set tabstop=2                   " 2 spaces!
+set softtabstop=2
+set autoindent                  " enable automatic indentation
+set smartindent                 " does the right thing
+
 
 " Whitespace  --------------------------------------------------
 autocmd BufEnter * EnableStripWhitespaceOnSave
+
 
 " Buffers ------------------------------------------------------
 "set viminfo^=%                  " Keep list of last opened buffers
 "set hidden                      " Allow hiding buffers
 " Close current buffer without closing window
 "command! Bd :bp<bar>bd#
+
 
 " Project Management ---------------------------------------------
 " store sessions information, then declares a function to be
@@ -116,11 +140,15 @@ let g:ctrlp_custom_ignore = '__pycache__\|node_modules\|.bundle' " ignore these 
 " fuzzy searching in a file
 map \ :CtrlPLine<cr>
 
+
 " Colors-----------------------------------------------------
 syntax enable                     " enable syntax highlighting
 set background=dark               " dark
+let g:grubbox_italic=1            " enable italics
 colorscheme gruvbox               " use plugin
+
 
 " Status Line: Airline
 set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
+
