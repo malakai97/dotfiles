@@ -152,3 +152,10 @@ colorscheme gruvbox               " use plugin
 set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
 
+
+" vim-ruby settings -----------------------------------------------
+let g:ruby_indent_block_style = 'do'  " Always indent a 'do' even if not expression start
+let g:ruby_indent_assignment_style = 'variable' " No giant indents on assignment
+
+
+
