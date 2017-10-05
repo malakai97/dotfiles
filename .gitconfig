@@ -6,7 +6,7 @@
   default = simple
 
 [core]
-  editor = vi
+  editor = vim
 
 [alias]
   unstage = reset -q HEAD --
