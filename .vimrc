@@ -14,6 +14,8 @@ Plugin 'townk/vim-autoclose'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-commentary'
 call vundle#end()
 filetype plugin indent on
 
