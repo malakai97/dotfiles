@@ -3,7 +3,7 @@
   name = Bryan Hockey
 
 [push]
-  default = simple
+  default = current
 
 [core]
   editor = vim
@@ -42,12 +42,10 @@
   s = status
   co = checkout
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 
 [blame]
   date = relative
-
-[push]
-  default = current
 
 [merge]
   conflictstyle = diff3
@@ -67,6 +65,8 @@
     new = green bold
 
 [color "status"]
-    added = yellow
-    changed = green
+    added = green
+    changed = yellow
     untracked = red
+[pull]
+	default = current

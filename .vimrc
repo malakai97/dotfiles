@@ -5,17 +5,23 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'morhetz/gruvbox'
+" Plugin 'morhetz/gruvbox'
+" Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'townk/vim-autoclose'
-Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
+Plugin 'ntpeters/vim-better-whitespace'
+
+" Confirmed not broken in WSL
+Plugin 'nathanaelkane/vim-indent-guides'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -77,12 +83,12 @@ nnoremap <expr> i IndentWithI()
 set backspace=eol,start,indent  " Fix backspace
 set whichwrap+=<,>,h,l          " Wrap cursor movements
 set wrap                        " wrap text visually
-set colorcolumn=100             " column to demark long lines
+set colorcolumn=90              " column to demark long lines
 set autoread                    " Read in changes immediately
 set encoding=utf8               " default to utf8
 set ffs=unix,dos,mac            " assume 'nix
 set number                      " line numbers
-set relativenumber              " line numbers relative to current
+" set relativenumber              " line numbers relative to current
 set ruler                       " more line info
 set history=700
 " set shell=bash
@@ -110,7 +116,18 @@ set smartindent                 " does the right thing
 
 " Whitespace  --------------------------------------------------
 autocmd BufEnter * EnableStripWhitespaceOnSave
+" highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+" Prevents it from being overrided by later colorscheme commands
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+"highlight ExtraWhitespace ctermbg=red guibg=red
+" less obtrusive version
+" highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+" another option
+" highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+" match ExtraWhitespace /\t/ " this thing is too laggy
 
+" GitGutter-----------------------------------------------------
+set signcolumn=yes
 
 " Buffers ------------------------------------------------------
 "set viminfo^=%                  " Keep list of last opened buffers
@@ -142,22 +159,38 @@ let g:ctrlp_custom_ignore = '__pycache__\|node_modules\|.bundle' " ignore these 
 " fuzzy searching in a file
 map \ :CtrlPLine<cr>
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|\.bundle|bundle|bundle_cache|coverage|cache|_site|_build|_yard)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
 
 " Colors-----------------------------------------------------
 syntax enable                     " enable syntax highlighting
+set t_Co=256                      " enable 256 colors (but probably do nothing)
+set t_ut=                         " disable background color erase
+if exists('+termguicolors')       " enable true colors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 set background=dark               " dark
-let g:grubbox_italic=1            " enable italics
-colorscheme gruvbox               " use plugin
+" let g:grubbox_italic=1          " enable italics
+colorscheme onehalfdark           " use plugin
 
 
 " Status Line: Airline
 set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
+let g:airline_theme='onehalfdark'
 
 
 " vim-ruby settings -----------------------------------------------
 let g:ruby_indent_block_style = 'do'  " Always indent a 'do' even if not expression start
 let g:ruby_indent_assignment_style = 'variable' " No giant indents on assignment
 
-
-
+" Indent Guides-----------------------------------------------------
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_guide_size = 1
