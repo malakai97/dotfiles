@@ -5,9 +5,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'morhetz/gruvbox'
+Plugin 'morhetz/gruvbox'
 " Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+" Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -116,7 +116,7 @@ set smartindent                 " does the right thing
 
 " Whitespace  --------------------------------------------------
 autocmd BufEnter * EnableStripWhitespaceOnSave
-" highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 " Prevents it from being overrided by later colorscheme commands
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 "highlight ExtraWhitespace ctermbg=red guibg=red
@@ -125,6 +125,10 @@ autocmd BufEnter * EnableStripWhitespaceOnSave
 " another option
 " highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 " match ExtraWhitespace /\t/ " this thing is too laggy
+
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 " GitGutter-----------------------------------------------------
 set signcolumn=yes
@@ -177,14 +181,14 @@ if exists('+termguicolors')       " enable true colors
   set termguicolors
 endif
 set background=dark               " dark
-" let g:grubbox_italic=1          " enable italics
-colorscheme onehalfdark           " use plugin
+let g:gruvbox=1          " enable italics
+colorscheme gruvbox               " use plugin
 
 
 " Status Line: Airline
 set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
-let g:airline_theme='onehalfdark'
+let g:airline_theme='gruvbox'
 
 
 " vim-ruby settings -----------------------------------------------
