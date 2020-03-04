@@ -80,13 +80,7 @@ echo
 # echo "Running doctor script to verify installation..."
 # http https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | "$BASH"
 
-echo
-echo "All done!"
-echo "Note that this installer doesn't yet configure your shell startup files:"
-i=0
-if [ -x ~/.rbenv/bin ]; then
-  echo "$((++i)). You'll want to ensure that \`~/.rbenv/bin' is added to PATH."
-fi
-echo "$((++i)). Run \`rbenv init' to see instructions how to configure rbenv for your shell."
-echo "$((++i)). Launch a new terminal window to verify that the configuration is correct."
-echo
+# rbenv-aliases
+mkdir -p "$(rbenv root)/plugins"
+git clone git://github.com/tpope/rbenv-aliases.git "$(rbenv root)/plugins/rbenv-aliases"
+rbenv alias --auto
