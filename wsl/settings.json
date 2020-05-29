@@ -1,0 +1,132 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+
+  "defaultProfile": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+  "initialCols": 120,
+  "initialRows": 40,
+  "keybindings" :
+  [
+    {"command" : null, "keys": [ "ctrl+w"] },
+    {"command" : null, "keys": [ "ctrl+shift_t"] },
+    {"command" : null, "keys": [ "pgup"] },
+    {"command" : null, "keys": [ "pgdn"] },
+    {"command" : null, "keys": [ "ctrl+pgup"] },
+    {"command" : null, "keys": [ "ctrl+pgdn"] },
+
+    { "command": "copy", "keys": ["ctrl+shift+c"] },
+    { "command": "paste", "keys": ["ctrl+shift+v"] },
+    { "command" : "closeTab", "keys" :  ["ctrl+w"]},
+    { "command" : "newTab", "keys" : [ "ctrl+shift+t" ] },
+    { "command" : "nextTab", "keys" : [ "ctrl+pgup" ] },
+    { "command" : "prevTab", "keys" : [ "ctrl+pgdn" ] }
+  ],
+
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Gruvbox Dark",
+      "fontFace": "Consolas",
+      "fontSize": 11,
+      "closeOnExit": true,
+      "cursorShape": "filledBox"
+    },
+    "list": [
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "commandline": "powershell.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "cmd",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+        "hidden": false,
+        "name": "Linux",
+        "source": "Windows.Terminal.Wsl",
+        "startingDirectory": "//wsl$/Ubuntu-18.04/home/malakai"
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": false,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      }
+    ]
+  },
+
+  "schemes": [
+		{
+			"name": "Tender",
+			"foreground": "#EEEEEE",
+			"background": "#282828",
+			"black": "#666666",
+			"blue": "#B3DEEF",
+			"green": "#C9D05C",
+			"cyan": "#73CEF4",
+			"red": "#F43753",
+			"purple": "#D3B987",
+			"yellow": "#FFC24B",
+			"white": "#EEEEEE",
+			"brightBlack": "#666666",
+			"brightBlue": "#B3DEEF",
+			"brightGreen": "#C9D05C",
+			"brightCyan": "#73CEF4",
+			"brightRed": "#F43753",
+			"brightPurple": "#D3B987",
+			"brightYellow": "#FFC24B",
+			"brightWhite": "#FEFFFF"
+		},
+		{
+			"name": "gruvboxdark",
+			"foreground": "#E5D3A2",
+			"background": "#1D1D1D",
+			"black": "#1D1D1D",
+			"blue": "#377274",
+			"green": "#868715",
+			"cyan": "#568D57",
+			"red": "#BE0E17",
+			"purple": "#9F4B73",
+			"yellow": "#CC871A",
+			"white": "#978771",
+			"brightBlack": "#7F7060",
+			"brightBlue": "#709585",
+			"brightGreen": "#A9B01D",
+			"brightCyan": "#7DB568",
+			"brightRed": "#F63028",
+			"brightPurple": "#C76F89",
+			"brightYellow": "#F7B024",
+			"brightWhite": "#E5D3A2"
+		},
+    {
+      "name": "Gruvbox Dark",
+      "black": "#1e1e1e",
+      "red": "#be0f17",
+      "green": "#868715",
+      "yellow": "#cc881a",
+      "blue": "#377375",
+      "purple": "#a04b73",
+      "cyan": "#578e57",
+      "white": "#978771",
+      "brightBlack": "#7f7061",
+      "brightRed": "#f73028",
+      "brightGreen": "#aab01e",
+      "brightYellow": "#f7b125",
+      "brightBlue": "#719586",
+      "brightPurple": "#c77089",
+      "brightCyan": "#7db669",
+      "brightWhite": "#e6d4a3",
+      "background": "#1e1e1e",
+      "foreground": "#e6d4a3"
+    }
+  ]
+
+}
+
