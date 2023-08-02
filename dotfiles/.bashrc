@@ -116,5 +116,5 @@ alias gti='git'
 alias alida='xfreerdp -d UMROOT -u ulib-ouadmin9 -g 1920x1080 141.211.216.51'
 alias branchdirs='read -n 1 -p "OK to make bunch of dirs in ../? [yN]" -r; echo ; [[ $REPLY =~ ^[Yy]$ ]] && git ls-remote --heads | cut -f 3 -d "/" | grep -v master | grep -v "From " | xargs -I{} git worktree add ../{} {}'
 
-export PATH=$PATH:~/.rbenv/bin
-eval "$(rbenv init -)"
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
