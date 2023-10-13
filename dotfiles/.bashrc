@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 umask 022
 
@@ -116,5 +116,38 @@ alias gti='git'
 alias alida='xfreerdp -d UMROOT -u ulib-ouadmin9 -g 1920x1080 141.211.216.51'
 alias branchdirs='read -n 1 -p "OK to make bunch of dirs in ../? [yN]" -r; echo ; [[ $REPLY =~ ^[Yy]$ ]] && git ls-remote --heads | cut -f 3 -d "/" | grep -v master | grep -v "From " | xargs -I{} git worktree add ../{} {}'
 
+# asdf
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
+
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+source <(kubectl completion bash)
+
+# fd
+# we have an ignore in ~/.config/fd/ignore
+
+# fzf
+fzfbin=`asdf which fzf`
+source "${fzfbin%/bin/fzf}/shell/completion.bash"
+source "${fzfbin%/bin/fzf}/shell/key-bindings.bash"
+export FZF_DEFAULT_COMMAND='fd --type file --strip-cwd-prefix --hidden --exclude .git'
+
+# bat
+alias cat='bat --tabs 2'
+export BAT_THEME="gruvbox-dark"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager (for man)
+# export MANROFFOPT="-c" # fixes issues with above
+batlog() { # tail -f with syntax highlighting
+  tail -f $@ | bat --paging=never -l log
+}
+alias bathelp='bat --plain --language=help' # This makes the help command a better
+help() {                                    # way of asking for --help. Usually.
+  "$@" --help 2>&1 | bathelp
+}
+batcolors() { # Lets you view try out all of the color themes on a given file
+  bat --list-themes | fzf --preview="bat --theme={} --color=always $@"
+}
+
+# ripgrep
+

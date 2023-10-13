@@ -8,16 +8,19 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 " Plugin 'NLKNguyen/papercolor-theme'
 " Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'townk/vim-autoclose'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Confirmed not broken in WSL
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -66,7 +69,8 @@ inoremap <right> <nop>
 " Navigation  ---------------------------------------------------------
 " nnoremap j gj                   " by screen line, not file line
 " nnoremap k gk                   " by screen line, not file line
-"
+" The problem with these is I am then unable to scroll up or down
+" through empty lines. That's probably fixable but meh.
 
 " Smart indent when entering insert mode on empty lines --------------
 function! IndentWithI()
@@ -113,6 +117,8 @@ set softtabstop=2
 set autoindent                  " enable automatic indentation
 set smartindent                 " does the right thing
 
+" Rebinds -----------------------------------------------------
+let mapleader=","
 
 " Whitespace  --------------------------------------------------
 autocmd BufEnter * EnableStripWhitespaceOnSave
@@ -153,24 +159,6 @@ set signcolumn=yes
 "endfunction
 
 
-" Finding Files: Ctrlp--------------------------------------------
-" find files by fuzzy path
-" search opened and other files
-"let g:ctrlp_cmd = 'CtrlPMixed'
-"let g:ctrlp_working_path_mode = 0 " disable working path because we use the project thing
-"let g:ctrlp_max_files=0           " no idea
-let g:ctrlp_custom_ignore = '__pycache__\|node_modules\|.bundle' " ignore these dirs
-" fuzzy searching in a file
-map \ :CtrlPLine<cr>
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux
-
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|\.bundle|bundle|bundle_cache|coverage|cache|_site|_build|_yard)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-
-
 " Colors-----------------------------------------------------
 syntax enable                     " enable syntax highlighting
 set t_Co=256                      " enable 256 colors (but probably do nothing)
@@ -190,11 +178,30 @@ set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
 
+" fzf -------------------------------------------------------------
+set rtp+=fzf
+nnoremap <C-f> :Files<CR>
+nnoremap <C-F> :GFiles<CR>
+" nnoremap <Leader>f :Files<CR>
+" nnoremap <Leader>F :GFiles<CR>
+
+" nerdree  --------------------------------------------------------
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>e :NERDTreeFind<CR>
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+let g:NERDTreeGitStatusConcealBrackets = 1
+
+
+" ripgrep  --------------------------------------------------------
+set grepprg=rg\ --vimgrep
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
 
 " vim-ruby settings -----------------------------------------------
 let g:ruby_indent_block_style = 'do'  " Always indent a 'do' even if not expression start
 let g:ruby_indent_assignment_style = 'variable' " No giant indents on assignment
 
 " Indent Guides-----------------------------------------------------
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
