@@ -130,7 +130,7 @@ source <(kubectl completion bash)
 fzfbin=`asdf which fzf`
 source "${fzfbin%/bin/fzf}/shell/completion.bash"
 source "${fzfbin%/bin/fzf}/shell/key-bindings.bash"
-export FZF_DEFAULT_COMMAND='fd --type file --strip-cwd-prefix --hidden --exclude .git'
+export FZF_DEFAULT_COMMAND="fd --type file --strip-cwd-prefix --hidden"
 
 # bat
 alias cat='bat --tabs=2'
