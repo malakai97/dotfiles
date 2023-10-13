@@ -172,7 +172,6 @@ set background=dark               " dark
 let g:gruvbox=1          " enable italics
 colorscheme gruvbox               " use plugin
 
-
 " Status Line: Airline
 set laststatus=2                  " always display
 let g:airline#extentions#tabline#enabled = 1
@@ -203,5 +202,6 @@ let g:ruby_indent_block_style = 'do'  " Always indent a 'do' even if not express
 let g:ruby_indent_assignment_style = 'variable' " No giant indents on assignment
 
 " Indent Guides-----------------------------------------------------
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
+nnoremap <Leader>i :IndentGuidesToggle<CR>
