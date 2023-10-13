@@ -125,7 +125,6 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source <(kubectl completion bash)
 
 # fd
-# we have an ignore in ~/.config/fd/ignore
 
 # fzf
 fzfbin=`asdf which fzf`
@@ -134,7 +133,7 @@ source "${fzfbin%/bin/fzf}/shell/key-bindings.bash"
 export FZF_DEFAULT_COMMAND='fd --type file --strip-cwd-prefix --hidden --exclude .git'
 
 # bat
-alias cat='bat --tabs 2'
+alias cat='bat --tabs=2'
 export BAT_THEME="gruvbox-dark"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager (for man)
 # export MANROFFOPT="-c" # fixes issues with above
