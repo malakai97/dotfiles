@@ -127,9 +127,8 @@ source <(kubectl completion bash)
 # fd
 
 # fzf
-fzfbin=`asdf which fzf`
-source "${fzfbin%/bin/fzf}/shell/completion.bash"
-source "${fzfbin%/bin/fzf}/shell/key-bindings.bash"
+source "$HOME/.config/fzf/completion.bash"
+source "$HOME/.config/fzf/key-bindings.bash"
 export FZF_DEFAULT_COMMAND="fd --type file --strip-cwd-prefix --hidden"
 
 # bat
