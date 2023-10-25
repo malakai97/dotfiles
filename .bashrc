@@ -113,8 +113,6 @@ alias rspec='bundle exec rspec'
 alias rubocop='bundle exec rubocop'
 alias ghit='git'
 alias gti='git'
-alias alida='xfreerdp -d UMROOT -u ulib-ouadmin9 -g 1920x1080 141.211.216.51'
-alias branchdirs='read -n 1 -p "OK to make bunch of dirs in ../? [yN]" -r; echo ; [[ $REPLY =~ ^[Yy]$ ]] && git ls-remote --heads | cut -f 3 -d "/" | grep -v master | grep -v "From " | xargs -I{} git worktree add ../{} {}'
 alias dokcer='docker'
 
 # ssh-agent
