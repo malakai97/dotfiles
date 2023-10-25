@@ -55,7 +55,7 @@ asdf global ruby 3.2.2
 
 # ffmpeg, mpv
 sudo curl --output-dir /etc/apt/trusted.gpg.d -O https://apt.fruit.je/fruit.gpg
-sudo echo 'deb https://apt.fruit.je/ubuntu jammy mpv' >> /etc/apt/sources.list.d/fruit.list
+echo 'deb https://apt.fruit.je/ubuntu jammy mpv' | sudo tee -a /etc/apt/sources.list.d/fruit.list
 sudo apt update
 sudo apt install -y mpv
 # this works but we need to set the config as well
