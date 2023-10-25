@@ -116,6 +116,27 @@ alias gti='git'
 alias alida='xfreerdp -d UMROOT -u ulib-ouadmin9 -g 1920x1080 141.211.216.51'
 alias branchdirs='read -n 1 -p "OK to make bunch of dirs in ../? [yN]" -r; echo ; [[ $REPLY =~ ^[Yy]$ ]] && git ls-remote --heads | cut -f 3 -d "/" | grep -v master | grep -v "From " | xargs -I{} git worktree add ../{} {}'
 
+# ssh-agent
+# this script is copied from github
+env=~/.ssh/agent.env
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+agent_load_env
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+  agent_start
+  ssh-add
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+  ssh-add
+fi
+unset env
+# end github script
+alias ssh-keys='ssh-add -l'
+
+
 # asdf
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
