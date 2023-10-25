@@ -4,6 +4,9 @@
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
+# copy everything over
+cp -R . "$HOME/"
+
 # updates and utils
 sudo apt update && sudo apt upgrade -y
 sudo apt install xclip tree
@@ -22,6 +25,9 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 grep "vundle#end" ./.vimrc -B 1000 > "$HOME/.vimrc"
 vim +PluginInstall +qall
 cp ./.vimrc "$HOME/.vimrc"
+
+# ssh
+chmod -R go-rwx "$HOME/.ssh"
 
 # asdf
 git clone https://github.com/malakai97/asdf.git ~/.asdf --branch v0.13.1
