@@ -75,7 +75,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin \
   docker-compose-plugin docker-ce-rootless-extras \
   uidmap fuse-overlayfs dbus-user-session
 sudo systemctl disable docker.service docker.socket
-curl -fsSL https://get.docker.com/rootless | sh
+dockerd-rootless-setuptool.sh
 systemctl --user start docker
 systemctl --user enable docker
 sudo loginctl enable-linger $(whoami)
