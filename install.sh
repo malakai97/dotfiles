@@ -60,3 +60,22 @@ sudo apt update
 sudo apt install -y mpv
 # this works but we need to set the config as well
 # and maybe also emit a message that's like "hope you're not on nvidia lolollol"
+
+# docker
+sudo apt install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "jammy")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin \
+  docker-compose-plugin docker-ce-rootless-extras \
+  uidmap fuse-overlayfs dbus-user-session
+sudo systemctl disable docker.service docker.socket
+curl -fsSL https://get.docker.com/rootless | sh
+systemctl --user start docker
+systemctl --user enable docker
+sudo loginctl enable-linger $(whoami)
