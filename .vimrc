@@ -180,9 +180,7 @@ let g:airline_theme='gruvbox'
 " fzf -------------------------------------------------------------
 set rtp+=fzf
 nnoremap <C-f> :Files<CR>
-nnoremap <C-F> :GFiles<CR>
-" nnoremap <Leader>f :Files<CR>
-" nnoremap <Leader>F :GFiles<CR>
+nnoremap <Leader>f :GFiles<CR>
 
 " nerdree  --------------------------------------------------------
 nnoremap <Leader>d :NERDTreeToggle<CR>
