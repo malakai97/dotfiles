@@ -47,7 +47,7 @@ echo -e -n "\x1b[\x32 q"
 
 if [ -n "$SSH_CLIENT" ]; then
   TITLE="\[\e]0;\u@\h: \w\a\]"
-  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
   TITLE="\[\e]0;\W\a\]"
   PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -94,6 +94,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+# disable ctrl+s halting terminal
+if [[ -t 0 && $- = *i* ]]; then
+  stty -ixon
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -144,9 +149,7 @@ alias ssh-keys='ssh-add -l'
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source <(kubectl completion bash)
 
-# fd
-
-# fzf
+# fd, fzf
 source "$HOME/.config/fzf/completion.bash"
 source "$HOME/.config/fzf/key-bindings.bash"
 export FZF_DEFAULT_COMMAND="fd --type file --strip-cwd-prefix --hidden"
@@ -168,4 +171,7 @@ batcolors() { # Lets you view try out all of the color themes on a given file
 }
 
 # ripgrep
+
+export PATH="$HOME/bin:$PATH" # ffmpeg binaries
+export PATH="$HOME/.local/bin:$PATH" # meson, ninja binaries
 
