@@ -1,0 +1,4 @@
+1. For steam, if the command works but the icon doesn't:
+  /usr/share/applications/steam.desktop and change the PrefersNonDefaultGPU=true to false
+2. Apt completion. The apt-mint-linux thing is crap. Move it and its corresponding bash
+   completion aside. apt seems to have an internal readline implementation or somethign.
