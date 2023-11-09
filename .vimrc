@@ -6,8 +6,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
-" Plugin 'NLKNguyen/papercolor-theme'
-" Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
@@ -21,6 +19,7 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'elzr/vim-json'
 
 " Confirmed not broken in WSL
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -169,8 +168,19 @@ if exists('+termguicolors')       " enable true colors
   set termguicolors
 endif
 set background=dark               " dark
-let g:gruvbox=1          " enable italics
+let g:gruvbox=1                   " enable italics
 colorscheme gruvbox               " use plugin
+
+" copypasta we stole from a guy to hpefully make the terminal work
+let g:terminal_ansi_colors = [
+  \'#282828', '#CC241D', '#98971A', '#D79921',
+  \'#458588', '#B16286', '#689D6A', '#D65D0E',
+  \'#fb4934', '#b8bb26', '#fabd2f', '#83a598',
+  \'#d3869b', '#8ec07c', '#fe8019', '#FBF1C7' ]
+highlight erminal guibg='#282828'
+highlight Terminal guifg='#ebdbb2'
+" highlight Terminal ctermbg='#282828'
+" highlight Terminal ctermfg='#ebdbb2'
 
 " Status Line: Airline
 set laststatus=2                  " always display
@@ -180,6 +190,7 @@ let g:airline_theme='gruvbox'
 " fzf -------------------------------------------------------------
 set rtp+=fzf
 nnoremap <C-f> :Files<CR>
+" nnoremap <C-F> :GFiles<CR> " you can't rebind a capital
 nnoremap <Leader>f :GFiles<CR>
 
 " nerdree  --------------------------------------------------------
@@ -203,3 +214,6 @@ let g:ruby_indent_assignment_style = 'variable' " No giant indents on assignment
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
 nnoremap <Leader>i :IndentGuidesToggle<CR>
+
+" vim-json----------------------------------------------------------
+let g:vim_json_syntax_conceal = 0 " Plugin can auto-hide double-quotes, but disable that
