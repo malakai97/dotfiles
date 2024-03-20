@@ -175,3 +175,5 @@ batcolors() { # Lets you view try out all of the color themes on a given file
 export PATH="$HOME/bin:$PATH" # ffmpeg binaries
 export PATH="$HOME/.local/bin:$PATH" # meson, ninja binaries
 
+# direnv; says it should be last
+eval "$(direnv hook bash)"
